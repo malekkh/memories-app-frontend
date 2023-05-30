@@ -44,20 +44,23 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:6001/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
+    const response = await fetch(
+      `https://malek-memories-app-api.onrender.com/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: loggedInUserId }),
+      }
+    );
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
   const postComment = async () => {
     const response = await fetch(
-      `http://localhost:6001/posts/${postId}/commentPost`,
+      `https://malek-memories-app-api.onrender.com/posts/${postId}/commentPost`,
       {
         method: "POST",
         headers: {
@@ -89,7 +92,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:6001/assets/${picturePath}`}
+          src={`https://malek-memories-app-api.onrender.com/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">
@@ -97,7 +100,7 @@ const PostWidget = ({
           <FlexBetween gap="0.3rem">
             <IconButton onClick={patchLike}>
               {isLiked ? (
-                <FavoriteOutlined sx={{ color:'red' }} />
+                <FavoriteOutlined sx={{ color: "red" }} />
               ) : (
                 <FavoriteBorderOutlined />
               )}

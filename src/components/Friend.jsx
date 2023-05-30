@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:6001/users/${_id}/${friendId}`,
+      `https://malek-memories-app-api.onrender.com/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
